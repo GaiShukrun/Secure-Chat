@@ -26,9 +26,9 @@ pip install pymongo
 
 ## Database Setup
 
-The application uses MongoDB Atlas. The connection string is already included in the code:
+The application uses MongoDB Atlas. Add your connection string in the code:
 ```
-mongodb+srv://gaish:Gai%210524031660@cluster0.dcr3ai0.mongodb.net/test
+
 ```
 
 ## How to Run
