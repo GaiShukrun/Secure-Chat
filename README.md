@@ -102,5 +102,42 @@ DH keys are stored in the following format:
    - Restart both server and client
    - Ensure both applications are running
 
+## Protocol Flow Diagram
 
+```mermaid
+sequenceDiagram
+    participant Alice
+    participant MongoDB
+    participant Bob
+    Note over Alice,Bob: Key Generation Phase
+    
+    rect rgb(40, 44, 52)
+        Note over Alice: 1. Generate RSA Keys
+        Note over Bob: 1. Generate RSA Keys
+    end
+    rect rgb(40, 44, 52)
+        Alice->>Bob: 2. Share RSA Public Key
+        Bob->>Alice: 2. Share RSA Public Key
+    end
+    rect rgb(40, 44, 52)
+        Note over Alice: 3. Calculate DH value (A)
+        Alice->>MongoDB: Store DH private key
+        Note over Bob: 3. Calculate DH value (B)
+        Bob->>MongoDB: Store DH private key
+    end
+    rect rgb(40, 44, 52)
+        Note over Alice: 4. Encrypt A with Bob's public key
+        Note over Bob: 4. Encrypt B with Alice's public key
+    end
+    rect rgb(40, 44, 52)
+        Alice->>Bob: 5. Send encrypted A
+        Bob->>Alice: 5. Send encrypted B
+    end
+    Note over Alice,Bob: Secure Chat Phase
+    rect rgb(50, 54, 62)
+        Note over Alice: Calculate shared secret
+        Note over Bob: Calculate shared secret
+        Alice->>Bob: Encrypted messages (AES-128)
+        Bob->>Alice: Encrypted messages (AES-128)
+    end
    
