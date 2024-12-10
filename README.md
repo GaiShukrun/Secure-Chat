@@ -40,6 +40,7 @@ sequenceDiagram
         Alice->>Bob: Encrypted messages (AES-128)
         Bob->>Alice: Encrypted messages (AES-128)
     end
+```
 
 ## Components
 
